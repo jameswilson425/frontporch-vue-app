@@ -1,14 +1,38 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Home from '../views/Home.vue';
+import Signup from "../views/Users/Signup.vue";
+import Login from "../views/Users/Login.vue";
+import Logout from "../views/Users/Logout.vue";
+import UsersShow from "../views/Users/UsersShow.vue";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
     name: 'Home',
     component: Home
+  },
+  { 
+    path: "/users/signup", 
+    name: "signup", 
+    component: Signup 
+  },
+  { 
+    path: "/users/login", 
+    name: "login", 
+    component: Login 
+  },
+  { 
+    path: "/users/logout", 
+    name: "logout", 
+    component: Logout 
+  },
+  { 
+    path: "/users/:id", 
+    name: "users-show", 
+    component: UsersShow 
   },
   {
     path: '/about',
@@ -18,12 +42,12 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   }
-]
+];
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-})
+});
 
-export default router
+export default router;
