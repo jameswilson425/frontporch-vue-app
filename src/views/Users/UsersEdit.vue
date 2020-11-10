@@ -32,7 +32,7 @@ export default {
   methods: {
     updateUser: function(user) {
       var params = {
-        userName: user.user_name,
+        user_name: user.user_name,
         email: user.email,
         address: user.address,
         bio: user.bio,

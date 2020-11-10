@@ -6,7 +6,7 @@
       <router-link to="/users/signup">Signup</router-link> |
       <router-link to="/users/login">Login</router-link> |
       <router-link to="/users/logout">Logout</router-link> |
-      <router-link to="/users/UsersShow">Profile</router-link> |
+      <router-link to="/users/1">Profile</router-link> |
       <router-link to="/posts">All Posts</router-link> |
       <router-link to="/posts/new">New Post</router-link> |
     </div>
@@ -34,5 +34,8 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+img {
+  width: 250px;
 }
 </style>
