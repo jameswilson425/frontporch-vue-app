@@ -41,7 +41,7 @@ export default {
         .patch("/api/users/" + user.id, params)
         .then((response) => {
           console.log("users update", response);
-          this.$router.push("/users");
+          this.$router.push(`/users/${user.id}`);
         })
         .catch((error) => {
           console.log("users update error", error.response);
