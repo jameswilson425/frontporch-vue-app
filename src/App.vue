@@ -5,7 +5,10 @@
       <router-link to="/about">About</router-link> |
       <router-link to="/users/signup">Signup</router-link> |
       <router-link to="/users/login">Login</router-link> |
-      <router-link to="/users/logout">Logout</router-link>
+      <router-link to="/users/logout">Logout</router-link> |
+      <router-link to="/users/UsersShow">Profile</router-link> |
+      <router-link to="/posts">All Posts</router-link> |
+      <router-link to="/posts/new">New Post</router-link> |
     </div>
     <router-view />
   </div>

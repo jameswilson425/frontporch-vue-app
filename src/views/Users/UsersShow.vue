@@ -1,6 +1,11 @@
 <template>
   <div class="users-show">
-    <!-- <h2>{{ user.userName }}</h2> -->
+    <h2>{{ user.user_name }}</h2>
+    <img :src="user.profile_image" alt="" />
+    <p>Email: {{ user.email }}</p>
+    <p>Address: {{ user.address }}</p>
+    <p>Bio: {{ user.bio }}</p>
+    <router-link v-bind:to="`/users/${user.id}/edit`">Edit Profile</router-link>
   </div>
 </template>
 
@@ -9,13 +14,14 @@ import axios from "axios";
 export default {
   data: function() {
     return {
-      photo: {},
+      user: {},
+      errors: [],
     };
   },
   created: function() {
-    axios.get("/api/users/" + this.$route.params.id).then((response) => {
-      console.log("users show", response);
-      this.photo = response.data;
+    axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
+      console.log(response.data);
+      this.user = response.data;
     });
   },
   methods: {},
