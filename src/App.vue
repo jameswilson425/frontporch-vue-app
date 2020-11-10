@@ -3,11 +3,15 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
-      <router-link to="/users/signup">Signup</router-link> |
-      <router-link to="/users/login">Login</router-link> |
-      <router-link to="/users/logout">Logout</router-link> |
-      <router-link to="/users/1">Profile</router-link> |
-      <router-link to="/posts">All Posts</router-link> |
+      <router-link to="/users/signup" v-if="!isLoggedIn()">Signup</router-link>
+      |
+      <router-link to="/users/login" v-if="!isLoggedIn()">Login</router-link> |
+      <router-link to="/users/logout" v-if="isLoggedIn()">Logout</router-link> |
+      <!-- <router-link :to="`/users/${user.id}`">Profile</router-link> | -->
+      <router-link :to="`/users/${getUserId()}`" v-if="isLoggedIn()"
+        >Profile</router-link
+      >
+      | <router-link to="/posts">All Posts</router-link> |
       <router-link to="/posts/new">New Post</router-link> |
     </div>
     <router-view />
@@ -39,3 +43,21 @@ img {
   width: 250px;
 }
 </style>
+
+<script>
+import axios from "axios";
+
+export default {
+  data: function() {
+    return {};
+  },
+  methods: {
+    isLoggedIn: function() {
+      return localStorage.getItem("jwt");
+    },
+    getUserId: function() {
+      return localStorage.getItem("user_id");
+    },
+  },
+};
+</script>

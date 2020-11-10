@@ -19,11 +19,15 @@ export default {
     };
   },
   created: function() {
-    axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
-      console.log(response.data);
-      this.user = response.data;
-    });
+    this.showUser();
   },
-  methods: {},
+  methods: {
+    showUser: function() {
+      axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
+        console.log(response.data);
+        this.user = response.data;
+      });
+    },
+  },
 };
 </script>
