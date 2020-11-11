@@ -5,11 +5,12 @@
       <ul>
         <li v-for="error in errors">{{ error }}</li>
       </ul>
-      Username: <input type="text" v-model="user.user_name" /> Email:
-      <input type="text" v-model="user.email" /> Address:
-      <input type="text" v-model="user.address" /> Bio:
-      <input type="text" v-model="user.bio" />
-      <input type="submit" value="Update" />
+      Username: <input type="text" v-model="user.user_name" /><br />
+      Email: <input type="text" v-model="user.email" /><br />
+      Address: <input type="text" v-model="user.address" /><br />
+      Bio: <input type="text" v-model="user.bio" /><br />
+      <input type="submit" value="Update" /><br />
+      <button v-on:click="destroyUser()">Delete Profile</button>
     </form>
   </div>
 </template>
@@ -47,6 +48,14 @@ export default {
           console.log("users update error", error.response);
           this.errors = error.response.data.errors;
         });
+    },
+    destroyUser: function() {
+      axios.delete(`/api/users/${this.user.id}`).then((response) => {
+        console.log("Success", response.data);
+        localStorage.removeItem("jwt");
+        localStorage.removeItem("user_id");
+        this.$router.push("/");
+      });
     },
   },
 };
