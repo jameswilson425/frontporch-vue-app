@@ -6,14 +6,18 @@
         <li v-for="error in errors">{{ error }}</li>
       </ul>
       Username: <input type="text" v-model="user.user_name" /><br />
-      <!-- Email: <input type="text" v-model="user.email" /><br /> -->
       Address: <input type="text" v-model="user.address" /><br />
       Bio: <input type="text" v-model="user.bio" /><br />
       <input type="submit" value="Update" /><br />
       <button v-on:click="destroyUser()">Delete Profile</button><br />
       <h1>Account Information</h1>
       Email: <input type="text" v-model="user.email" /><br />
-      <button v-on:click="passwordUpdate = !passwordUpdate">
+      <button
+        type="button"
+        v-on:click="passwordUpdate = !passwordUpdate"
+        v-if="!isHidden"
+        @click="isHidden = true"
+      >
         Change Password
       </button>
       <div v-if="passwordUpdate === true">
@@ -37,6 +41,7 @@
             v-model="password_confirmation"
           />
         </div>
+        <button type="button" @click="updateUser(user)">Update Password</button>
       </div>
     </form>
   </div>
@@ -53,6 +58,7 @@ export default {
       password: "",
       password_confirmation: "",
       passwordUpdate: false,
+      isHidden: false,
     };
   },
   created: function() {
@@ -68,7 +74,7 @@ export default {
         email: user.email,
         address: user.address,
         bio: user.bio,
-        current_password: user.password,
+        current_password: this.current_password,
         password: this.password,
         password_confirmation: this.password,
       };
