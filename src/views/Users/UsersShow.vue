@@ -7,7 +7,7 @@
     <p>Bio: {{ user.bio }}</p>
     <router-link v-bind:to="`/users/${user.id}/edit`">Edit Profile</router-link>
     <h2>Your Posts</h2>
-    <p>{{ user.post }}</p>
+    <!-- <div v-for="post in posts(filterBy(post.this.user_id))"></div> -->
   </div>
 </template>
 
