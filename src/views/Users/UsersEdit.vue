@@ -6,11 +6,38 @@
         <li v-for="error in errors">{{ error }}</li>
       </ul>
       Username: <input type="text" v-model="user.user_name" /><br />
-      Email: <input type="text" v-model="user.email" /><br />
+      <!-- Email: <input type="text" v-model="user.email" /><br /> -->
       Address: <input type="text" v-model="user.address" /><br />
       Bio: <input type="text" v-model="user.bio" /><br />
       <input type="submit" value="Update" /><br />
-      <button v-on:click="destroyUser()">Delete Profile</button>
+      <button v-on:click="destroyUser()">Delete Profile</button><br />
+      <h1>Account Information</h1>
+      Email: <input type="text" v-model="user.email" /><br />
+      <button v-on:click="passwordUpdate = !passwordUpdate">
+        Change Password
+      </button>
+      <div v-if="passwordUpdate === true">
+        <div class="form-group">
+          <label>Current Password</label>
+          <input
+            type="password"
+            class="form-control"
+            v-model="current_password"
+          />
+        </div>
+        <div class="form-group">
+          <label>New Password</label>
+          <input type="password" class="form-control" v-model="password" />
+        </div>
+        <div class="form-group">
+          <label>Confirm Password</label>
+          <input
+            type="password"
+            class="form-control"
+            v-model="password_confirmation"
+          />
+        </div>
+      </div>
     </form>
   </div>
 </template>
@@ -22,6 +49,10 @@ export default {
     return {
       user: {},
       errors: [],
+      current_password: "",
+      password: "",
+      password_confirmation: "",
+      passwordUpdate: false,
     };
   },
   created: function() {
@@ -37,6 +68,9 @@ export default {
         email: user.email,
         address: user.address,
         bio: user.bio,
+        current_password: user.password,
+        password: this.password,
+        password_confirmation: this.password,
       };
       axios
         .patch("/api/users/" + user.id, params)
