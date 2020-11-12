@@ -7,8 +7,8 @@
       </ul>
       <div class="form-group">
         <label>Username:</label>
-        <input type="text" class="form-control" v-model="userName" />
-        <small>{{ 20 - user_name.length }} characters remaining</small>
+        <input type="text" class="form-control" v-model="userName" /> <br />
+        <small>{{ 20 - userName.length }} characters remaining</small>
       </div>
       <div class="form-group">
         <label>Email:</label>
@@ -16,7 +16,7 @@
       </div>
       <div class="form-group">
         <label>Password:</label>
-        <input type="password" class="form-control" v-model="password" />
+        <input type="password" class="form-control" v-model="password" /> <br />
         <small v-if="password.length < 8" class="text-danger"
           >Must be at least 8 characters</small
         >
@@ -38,7 +38,8 @@
       </div>
       <div class="form-group">
         <label>Bio:</label>
-        <input type="text" class="form-control" v-model="bio" />
+        <input type="text" class="form-control" v-model="bio" /> <br />
+        <small>{{ 900 - bio.length }} characters remaining</small>
       </div>
       <input type="submit" class="btn btn-primary" value="Submit" />
     </form>
