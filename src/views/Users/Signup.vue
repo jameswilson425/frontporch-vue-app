@@ -31,6 +31,10 @@
           class="form-control"
           v-model="passwordConfirmation"
         />
+        <br />
+        <small v-if="password !== passwordConfirmation" class="text-danger"
+          >passwords do not match</small
+        >
       </div>
       <div class="form-group">
         <label>Address:</label>
