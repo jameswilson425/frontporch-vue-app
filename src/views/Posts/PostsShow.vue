@@ -1,10 +1,15 @@
 <template>
   <div class="posts-show">
+    <p v-if="$parent.isLoggedIn()"></p>
     <h2>{{ post.title }}</h2>
     <img v-bind:src="post.image_url" v-bind:alt="post.title" />
     <p>Location: {{ post.address }}</p>
     <p>Details: {{ post.body }}</p>
-    <router-link v-bind:to="`/posts/${post.id}/edit`">Edit post</router-link>
+    <router-link
+      v-if="post.user_id == $parent.getUserId()"
+      v-bind:to="`/posts/${post.id}/edit`"
+      >Edit post</router-link
+    >
     <br />
     <router-link to="/posts">Back to all posts</router-link>
   </div>

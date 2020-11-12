@@ -5,6 +5,7 @@
       <router-link to="/about">About</router-link> |
       <router-link to="/users/signup" v-if="!isLoggedIn()">Signup</router-link>
       |
+
       <router-link to="/users/login" v-if="!isLoggedIn()">Login</router-link> |
       <router-link to="/users/logout" v-if="isLoggedIn()">Logout</router-link> |
       <!-- <router-link :to="`/users/${user.id}`">Profile</router-link> | -->

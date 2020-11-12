@@ -41,8 +41,11 @@
         <input type="text" class="form-control" v-model="address" />
       </div>
       <div class="form-group">
-        <label>Bio:</label>
-        <input type="text" class="form-control" v-model="bio" /> <br />
+        <label>Bio:</label> <br />
+        <!-- <input type="text" class="form-control" v-model="bio" /> <br /> -->
+        <textarea name="bio" rows="10" cols="100">
+Tell us about yourself! Feel free to include links to your music and whatnot.</textarea
+        >
         <small>{{ 900 - bio.length }} characters remaining</small>
       </div>
       <input type="submit" class="btn btn-primary" value="Submit" />
