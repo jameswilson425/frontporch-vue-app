@@ -10,6 +10,9 @@
       <input type="text" v-model="post.body" /> Image:
       <input type="text" v-model="post.image_url" />
       <input type="submit" value="Update" />
+      <button v-on:click="destroyPost()">
+        Delete Post
+      </button>
     </form>
   </div>
 </template>
@@ -47,6 +50,12 @@ export default {
           console.log("posts update error", error.response);
           this.errors = error.response.data.errors;
         });
+    },
+    destroyPost: function() {
+      axios.delete(`/api/posts/${this.post.id}`).then((response) => {
+        console.log("Success", response.data);
+        this.$router.push("/posts");
+      });
     },
   },
 };

@@ -1,5 +1,6 @@
 <template>
   <div class="posts-new">
+    <p v-if="$parent.isLoggedIn()"></p>
     <h1>New Post</h1>
     <form v-on:submit.prevent="createPost()">
       <ul>
@@ -28,7 +29,7 @@ export default {
   },
   created: function() {},
   methods: {
-    createPost: function() {
+    createPost: function(post) {
       var params = {
         title: this.newPostTitle,
         body: this.newPostBody,
@@ -39,7 +40,7 @@ export default {
         .post("/api/posts", params)
         .then((response) => {
           console.log("posts create", response);
-          this.$router.push("/posts");
+          this.$router.push(`/users/${post.id}`);
         })
         .catch((error) => {
           console.log("posts create error", error.response);

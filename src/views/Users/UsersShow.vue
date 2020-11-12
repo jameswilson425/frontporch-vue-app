@@ -6,8 +6,11 @@
     <p>Address: {{ user.address }}</p>
     <p>Bio: {{ user.bio }}</p>
     <router-link v-bind:to="`/users/${user.id}/edit`">Edit Profile</router-link>
-    <h2>Your Posts</h2>
-    <!-- <div v-for="post in posts(filterBy(post.this.user_id))"></div> -->
+    <!-- <h2>Your Posts</h2>
+    <div v-for="post in posts">
+      <div v-if="post.user_id == user.id"></div>
+      <router-link :to="`/posts/${post.id}`">{{ post.title }}</router-link>
+    </div> -->
   </div>
 </template>
 
@@ -17,6 +20,7 @@ export default {
   data: function() {
     return {
       user: {},
+      posts: [],
       errors: [],
     };
   },
