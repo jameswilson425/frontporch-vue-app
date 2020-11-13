@@ -15,7 +15,7 @@
       | <router-link to="/posts">All Posts</router-link> |
       <router-link to="/posts/new">New Post</router-link> |
     </div>
-    <router-view />
+    <router-view :key="$route.path" />
   </div>
 </template>
 

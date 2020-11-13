@@ -2,7 +2,7 @@
   <div class="posts-show">
     <h2>{{ post.title }}</h2>
     <img v-bind:src="post.image_url" v-bind:alt="post.title" />
-    <p>Posted by: {{ post.user_ame }}</p>
+    <p>Posted by: {{ post.user_name }}</p>
     <p>Location: {{ post.address }}</p>
     <p>Details: {{ post.body }}</p>
     <router-link
@@ -14,7 +14,7 @@
     <router-link to="/posts">Back to all posts</router-link>
     <h2>Replies</h2>
     <div v-for="reply in post.replies">
-      <p>{{ reply.user_id }}</p>
+      <p>{{ reply.user_name }} replied:</p>
       <p>{{ reply.body }}</p>
       <button
         v-if="reply.user_id == $parent.getUserId() && !isHidden"
