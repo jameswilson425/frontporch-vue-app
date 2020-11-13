@@ -3,6 +3,7 @@
     <h2>{{ post.title }}</h2>
     <img v-bind:src="post.image_url" v-bind:alt="post.title" />
     <p>Posted by: {{ post.user_name }}</p>
+    <p>{{ post.profile_image }}</p>
     <p>Location: {{ post.address }}</p>
     <p>Details: {{ post.body }}</p>
     <router-link
