@@ -16,17 +16,28 @@
     <div v-for="reply in post.replies">
       <p>{{ reply.user_id }}</p>
       <p>{{ reply.body }}</p>
-      <router-link
-        v-if="reply.user_id == $parent.getUserId()"
-        v-bind:to="`/replies/${reply.id}/edit`"
-        >Edit reply</router-link
-      >
       <button
-        v-if="reply.user_id == $parent.getUserId()"
-        v-on:click="destroyReply()"
+        v-if="reply.user_id == $parent.getUserId() && !isHidden"
+        @click="isHidden = true"
+        type="button"
+        v-on:click="replyUpdate = !replyUpdate"
       >
-        Delete Reply
+        Edit Reply
       </button>
+      <div v-if="reply.user_id == $parent.getUserId() && replyUpdate === true">
+        <div class="form-group">
+          <label>{{ reply.body }}</label>
+          <input type="text" class="form-control" v-model="current_reply" />
+        </div>
+        <button type="button" @click="updateReply()">Update Reply</button>
+
+        <button
+          v-if="reply.user_id == $parent.getUserId()"
+          v-on:click="destroyReply()"
+        >
+          Delete Reply
+        </button>
+      </div>
     </div>
     <form v-on:submit.prevent="createReply()">
       <h3>Reply to this post:</h3>
@@ -44,6 +55,9 @@ export default {
       post: {},
       replies: [],
       newPostReply: "",
+      current_reply: "",
+      replyUpdate: false,
+      isHidden: false,
     };
   },
   created: function() {
@@ -77,7 +91,7 @@ export default {
         .patch("/api/replies/" + reply.id, params)
         .then((response) => {
           console.log("replies update", response);
-          this.$router.push(`/${reply.id}`);
+          this.$router.push("/posts");
         })
         .catch((error) => {
           console.log("replies update error", error.response);
@@ -87,7 +101,7 @@ export default {
     destroyReply: function() {
       axios.delete(`/api/replies/${this.reply.id}`).then((response) => {
         console.log("Success", response.data);
-        this.$router.push("/replies");
+        this.$router.push("/posts");
       });
     },
   },
