@@ -5,6 +5,7 @@
       <h2>{{ post.title }}</h2>
       <img v-bind:src="post.image_url" v-bind:alt="post.title" />
       <p>Location: {{ post.address }}</p>
+      <p>Instrument(s): {{ post.instruments }}</p>
       <router-link v-bind:to="`/posts/${post.id}`">View Post</router-link>
     </div>
   </div>
@@ -16,6 +17,7 @@ export default {
   data: function() {
     return {
       posts: [],
+      instruments: [],
     };
   },
   created: function() {

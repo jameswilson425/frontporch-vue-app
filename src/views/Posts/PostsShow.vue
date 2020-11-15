@@ -3,7 +3,6 @@
     <h2>{{ post.title }}</h2>
     <img v-bind:src="post.image_url" v-bind:alt="post.title" />
     <p>Posted by: {{ post.user_name }}</p>
-    <p>{{ post.profile_image }}</p>
     <p>Location: {{ post.address }}</p>
     <p>Details: {{ post.body }}</p>
     <router-link
@@ -26,11 +25,14 @@
         Edit Reply
       </button>
       <div v-if="reply.user_id == $parent.getUserId() && replyUpdate === true">
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label>{{ reply.body }}</label>
           <input type="text" class="form-control" v-model="current_reply" />
-        </div>
-        <button type="button" @click="updateReply()">Update Reply</button>
+        </div> -->
+        <form v-on:submit.prevent="updateReply()">
+          <input type="text" v-model="updatePostReply" />
+          <input type="submit" value="Update" />
+        </form>
 
         <button
           v-if="reply.user_id == $parent.getUserId()"
@@ -57,6 +59,7 @@ export default {
       replies: [],
       newPostReply: "",
       current_reply: "",
+      updatePostReply: "",
       replyUpdate: false,
       isHidden: false,
     };
@@ -86,7 +89,8 @@ export default {
     },
     updateReply: function(reply) {
       var params = {
-        body: reply.body,
+        body: this.updatePostReply,
+        post_id: this.reply.post_id,
       };
       axios
         .patch("/api/replies/" + reply.id, params)

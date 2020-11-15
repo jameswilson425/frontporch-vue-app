@@ -6,6 +6,10 @@
     <p>Address: {{ user.address }}</p>
     <p>Bio: {{ user.bio }}</p>
     <router-link v-bind:to="`/users/${user.id}/edit`">Edit Profile</router-link>
+    <h2>Activity</h2>
+    <p>Posts: {{ user.posts }}</p>
+    <p>Replies: {{ user.replies }}</p>
+
     <!-- <h2>Your Posts</h2>
     <div v-for="post in posts">
       <div v-if="post.user_id == user.id"></div>

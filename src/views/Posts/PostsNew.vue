@@ -10,6 +10,19 @@
       <input type="text" v-model="newPostBody" /> Address:
       <input type="text" v-model="newPostAddress" /> Image:
       <input type="text" v-model="newPostUrl" />
+      <h2>Instruments</h2>
+      <div v-for="instrument in instruments">
+        <input
+          type="checkbox"
+          :id="instrument.id"
+          :value="instrument.id"
+          v-model="selectedInstrumentIds"
+        />
+        <label :for="instrument.id">{{ instrument.name }}</label>
+      </div>
+
+      <br />
+      <span>Selected instrument ids: {{ selectedInstrumentIds }}</span>
       <input type="submit" value="Create" />
     </form>
   </div>
@@ -25,9 +38,16 @@ export default {
       newPostAddress: "",
       newPostUrl: "",
       errors: [],
+      instruments: [],
+      selectedInstrumentIds: [],
     };
   },
-  created: function() {},
+  created: function() {
+    axios.get("/api/instruments").then((response) => {
+      this.instruments = response.data;
+      console.log(response.data);
+    });
+  },
   methods: {
     createPost: function(post) {
       var params = {
@@ -35,12 +55,13 @@ export default {
         body: this.newPostBody,
         address: this.newPostAddress,
         image_url: this.newPostUrl,
+        instrument_ids: this.selectedInstrumentIds,
       };
       axios
         .post("/api/posts", params)
         .then((response) => {
           console.log("posts create", response);
-          this.$router.push(`/users/${post.id}`);
+          this.$router.push(`/posts/${post.id}`);
         })
         .catch((error) => {
           console.log("posts create error", error.response);
