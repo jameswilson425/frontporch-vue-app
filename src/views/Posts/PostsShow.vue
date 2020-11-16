@@ -18,25 +18,29 @@
       <p>{{ reply.body }}</p>
       <button
         v-if="reply.user_id == $parent.getUserId() && !isHidden"
-        @click="isHidden = true"
         type="button"
-        v-on:click="replyUpdate = !replyUpdate"
+        v-on:click="
+          isHidden = true;
+          currentReply = reply;
+        "
       >
         Edit Reply
       </button>
-      <div v-if="reply.user_id == $parent.getUserId() && replyUpdate === true">
+      <div
+        v-if="reply.user_id == $parent.getUserId() && reply === currentReply"
+      >
         <!-- <div class="form-group">
           <label>{{ reply.body }}</label>
           <input type="text" class="form-control" v-model="current_reply" />
         </div> -->
-        <form v-on:submit.prevent="updateReply()">
-          <input type="text" v-model="updatePostReply" />
+        <form v-on:submit.prevent="updateReply(currentReply)">
+          <input type="text" v-model="currentReply.body" />
           <input type="submit" value="Update" />
         </form>
 
         <button
           v-if="reply.user_id == $parent.getUserId()"
-          v-on:click="destroyReply()"
+          v-on:click="destroyReply(currentReply)"
         >
           Delete Reply
         </button>
@@ -58,7 +62,7 @@ export default {
       post: {},
       replies: [],
       newPostReply: "",
-      current_reply: "",
+      currentReply: "",
       updatePostReply: "",
       replyUpdate: false,
       isHidden: false,
@@ -71,16 +75,17 @@ export default {
     });
   },
   methods: {
-    createReply: function(reply) {
+    createReply: function() {
       var params = {
         body: this.newPostReply,
-        post_id: this.reply.post_id,
+        post_id: this.post.id,
       };
       axios
         .post("/api/replies", params)
         .then((response) => {
           console.log("replies create", response);
-          this.$router.push(`/${reply.id}`);
+          this.post.replies.push(response.data);
+          this.newPostReply = "";
         })
         .catch((error) => {
           console.log("replies create error", error.response);
@@ -89,24 +94,28 @@ export default {
     },
     updateReply: function(reply) {
       var params = {
-        body: this.updatePostReply,
-        post_id: this.reply.post_id,
+        body: reply.body,
+        post_id: this.post.id,
       };
       axios
         .patch("/api/replies/" + reply.id, params)
         .then((response) => {
           console.log("replies update", response);
-          this.$router.push("/posts");
+          this.isHidden = false;
+          this.currentReply = "";
         })
         .catch((error) => {
           console.log("replies update error", error.response);
           this.errors = error.response.data.errors;
         });
     },
-    destroyReply: function() {
-      axios.delete(`/api/replies/${this.reply.id}`).then((response) => {
+    destroyReply: function(reply) {
+      axios.delete(`/api/replies/${reply.id}`).then((response) => {
         console.log("Success", response.data);
-        this.$router.push("/posts");
+        this.isHidden = false;
+        this.currentReply = "";
+        var index = this.post.replies.indexOf(reply);
+        this.post.replies.splice(index, 1);
       });
     },
   },

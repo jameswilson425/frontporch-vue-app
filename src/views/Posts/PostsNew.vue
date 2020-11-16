@@ -49,7 +49,7 @@ export default {
     });
   },
   methods: {
-    createPost: function(post) {
+    createPost: function() {
       var params = {
         title: this.newPostTitle,
         body: this.newPostBody,
@@ -61,7 +61,7 @@ export default {
         .post("/api/posts", params)
         .then((response) => {
           console.log("posts create", response);
-          this.$router.push(`/posts/${post.id}`);
+          this.$router.push(`/posts/${response.data.id}`);
         })
         .catch((error) => {
           console.log("posts create error", error.response);
