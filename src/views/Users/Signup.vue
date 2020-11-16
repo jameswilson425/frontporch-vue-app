@@ -48,6 +48,8 @@ Tell us about yourself! Feel free to include links to your music and whatnot.</t
         >
         <small>{{ 900 - bio.length }} characters remaining</small>
       </div>
+      Profile Picture:
+      <input type="text" v-model="newProfileImage" />
       <input type="submit" class="btn btn-primary" value="Submit" />
     </form>
   </div>
@@ -65,6 +67,7 @@ export default {
       passwordConfirmation: "",
       address: "",
       bio: "",
+      newProfileImage: "",
       errors: [],
       status: "",
     };
@@ -78,6 +81,7 @@ export default {
         password_confirmation: this.passwordConfirmation,
         address: this.address,
         bio: this.bio,
+        profile_image: this.newProfileImage,
       };
       axios
         .post("/api/users", params)
