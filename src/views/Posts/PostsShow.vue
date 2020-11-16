@@ -60,8 +60,10 @@
 
 <style>
 #map {
-  width: 100%;
-  height: 200px;
+  width: 50%;
+  height: 250px;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>
 
@@ -78,6 +80,7 @@ export default {
       updatePostReply: "",
       replyUpdate: false,
       isHidden: false,
+      address: "Chicago",
     };
   },
   created: function() {
@@ -92,6 +95,7 @@ export default {
   methods: {
     geolocateAddress: function() {
       mapboxgl.accessToken = process.env.VUE_APP_MAPBOX_ACCESS_TOKEN;
+      // eslint-disable-next-line no-undef
       var mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
       mapboxClient.geocoding
         .forwardGeocode({
