@@ -4,8 +4,10 @@
     <img v-bind:src="post.image_url" v-bind:alt="post.title" />
     <p>Posted by: {{ post.user_name }}</p>
     <p>Location: {{ post.address }}</p>
-    <input type="text" v-model="this.post.address" /><button
+    <!-- <input type="text" v-model="this.post.address" /> -->
+    <button
       type="button"
+      value="this.post.address"
       v-on:click="geolocateAddress()"
     >
       See on map
