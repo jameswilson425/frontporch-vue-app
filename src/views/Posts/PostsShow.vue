@@ -5,6 +5,7 @@
     <p>Posted by: {{ post.user_name }}</p>
     <p>Location: {{ post.address }}</p>
     <input type="text" v-model="this.post.address" /><button
+      type="button"
       v-on:click="geolocateAddress()"
     >
       See on map
@@ -65,6 +66,14 @@
   margin-left: auto;
   margin-right: auto;
 }
+#marker {
+  background-image: url("https://static.thenounproject.com/png/55437-200.png");
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
 </style>
 
 <script>
@@ -92,6 +101,7 @@ export default {
   mounted: function() {
     this.geolocateAddress();
   },
+
   methods: {
     geolocateAddress: function() {
       mapboxgl.accessToken = process.env.VUE_APP_MAPBOX_ACCESS_TOKEN;
@@ -119,7 +129,11 @@ export default {
               center: feature.center,
               zoom: 13,
             });
-            new mapboxgl.Marker().setLngLat(feature.center).addTo(map);
+            // create DOM element for the marker
+            var el = document.createElement("div");
+            el.id = "marker";
+            // create the marker
+            new mapboxgl.Marker(el).setLngLat(feature.center).addTo(map);
           }
         });
     },
