@@ -7,7 +7,7 @@
           <!--  start blog left-->
           <div
             v-for="post in posts"
-            class="col-lg-8 col-md-12 sm-margin-50px-bottom"
+            class="col-lg-12 col-md-12 sm-margin-50px-bottom"
           >
             <div class="card margin-40px-bottom border-0 bg-light rounded-0">
               <div class="row no-gutters list-blog">
@@ -21,13 +21,13 @@
                 </div>
                 <div class="col-md-7">
                   <div class="card-body">
-                    <span class="category">{{ post.address }}</span>
-
                     <h5>
                       <router-link v-bind:to="`/posts/${post.id}`">{{
                         post.title
                       }}</router-link>
                     </h5>
+
+                    <span class="category">{{ post.address }}</span>
 
                     <p>Instrument(s):</p>
                     <div v-for="instrument in post.instruments">

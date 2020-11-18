@@ -1,7 +1,8 @@
 <template>
   <div class="posts-edit">
     <!--  start about left-->
-    <section>
+    <section class="bg-secondary">
+      >
       <div class="col-lg-8 col-md-12 sm-margin-50px-bottom">
         <div>
           <div class="margin-30px-bottom">

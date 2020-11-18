@@ -1,64 +1,68 @@
 <template>
   <div class="posts-show">
-    <h2>{{ post.title }}</h2>
-    <img v-bind:src="post.image_url" v-bind:alt="post.title" />
-    <p>Posted by: {{ post.user_name }}</p>
-    <p>Location: {{ post.address }}</p>
-    <!-- <input type="text" v-model="this.post.address" /> -->
-    <button
-      type="button"
-      value="this.post.address"
-      v-on:click="geolocateAddress()"
-    >
-      See on map
-    </button>
-
-    <div id="map"></div>
-
-    <p>Details: {{ post.body }}</p>
-    <router-link
-      v-if="post.user_id == $parent.getUserId()"
-      v-bind:to="`/posts/${post.id}/edit`"
-      >Edit post</router-link
-    >
-    <br />
-
-    <h2>Replies</h2>
-    <div v-for="reply in post.replies">
-      <p>{{ reply.user_name }} replied:</p>
-      <p>{{ reply.body }}</p>
-      <button
-        v-if="reply.user_id == $parent.getUserId() && !isHidden"
-        type="button"
-        v-on:click="
-          isHidden = true;
-          currentReply = reply;
-        "
-      >
-        Edit Reply
-      </button>
-      <div
-        v-if="reply.user_id == $parent.getUserId() && reply === currentReply"
-      >
-        <form v-on:submit.prevent="updateReply(currentReply)">
-          <input type="text" v-model="currentReply.body" />
-          <input type="submit" value="Update" />
-        </form>
-
+    <section class="bg-secondary">
+      <h2>{{ post.title }}</h2>
+      <img v-bind:src="post.image_url" v-bind:alt="post.title" />
+      <div class="card-body">
+        <p>Posted by: {{ post.user_name }}</p>
+        <p>Location: {{ post.address }}</p>
+        <!-- <input type="text" v-model="this.post.address" /> -->
         <button
-          v-if="reply.user_id == $parent.getUserId()"
-          v-on:click="destroyReply(currentReply)"
+          type="button"
+          value="this.post.address"
+          v-on:click="geolocateAddress()"
         >
-          Delete Reply
+          See on map
         </button>
+
+        <div id="map"></div>
+
+        <p>Details: {{ post.body }}</p>
+        <router-link
+          v-if="post.user_id == $parent.getUserId()"
+          v-bind:to="`/posts/${post.id}/edit`"
+          >Edit post</router-link
+        >
       </div>
-    </div>
-    <form v-if="$parent.isLoggedIn()" v-on:submit.prevent="createReply()">
-      <h3>Reply to this post:</h3>
-      <input type="text" v-model="newPostReply" />
-      <input type="submit" value="Reply" />
-    </form>
-    <router-link to="/posts">Back to all posts</router-link>
+      <br />
+
+      <h2>Replies</h2>
+      <div v-for="reply in post.replies">
+        <p>{{ reply.user_name }} replied:</p>
+        <p>{{ reply.body }}</p>
+        <button
+          v-if="reply.user_id == $parent.getUserId() && !isHidden"
+          type="button"
+          v-on:click="
+            isHidden = true;
+            currentReply = reply;
+          "
+        >
+          Edit Reply
+        </button>
+        <div
+          v-if="reply.user_id == $parent.getUserId() && reply === currentReply"
+        >
+          <form v-on:submit.prevent="updateReply(currentReply)">
+            <input type="text" v-model="currentReply.body" />
+            <input type="submit" value="Update" />
+          </form>
+
+          <button
+            v-if="reply.user_id == $parent.getUserId()"
+            v-on:click="destroyReply(currentReply)"
+          >
+            Delete Reply
+          </button>
+        </div>
+      </div>
+      <form v-if="$parent.isLoggedIn()" v-on:submit.prevent="createReply()">
+        <h3>Reply to this post:</h3>
+        <input type="text" v-model="newPostReply" />
+        <input type="submit" value="Reply" />
+      </form>
+      <router-link to="/posts">Back to all posts</router-link>
+    </section>
   </div>
 </template>
 
