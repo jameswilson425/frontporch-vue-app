@@ -46,8 +46,8 @@
                       class="navbar-brand width-500px sm-width-180px xs-width-150px"
                       ><img
                         id="logo"
-                        src="img/logos/frontporch.png"
-                        alt="img/logos/frontporch.png"
+                        src="./../public/img/logos/frontporch.png"
+                        alt="logo"
                     /></a>
                     <!-- end logo -->
                   </div>

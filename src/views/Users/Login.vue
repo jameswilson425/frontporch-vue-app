@@ -1,22 +1,32 @@
 <template>
   <div class="login">
-    <form v-on:submit.prevent="submit()">
-      <h1>Login</h1>
-      <ul>
-        <li class="text-danger" v-for="error in errors">{{ error }}</li>
-      </ul>
-      <div class="form-group">
-        <label>Email:</label>
-        <input type="email" class="form-control" v-model="email" />
+    <section class="bg-dark">
+      <div class="col-lg-4 col-md-6 sm-margin-50px-bottom form-center">
+        <form class="text-light bg-dark" v-on:submit.prevent="submit()">
+          <h1 class="text-light bg-dark">Login</h1>
+          <ul>
+            <li class="text-danger" v-for="error in errors">{{ error }}</li>
+          </ul>
+          <div class="form-group">
+            <label>Email:</label>
+            <input type="email" class="form-control" v-model="email" />
+          </div>
+          <div class="form-group">
+            <label>Password:</label>
+            <input type="password" class="form-control" v-model="password" />
+          </div>
+          <input type="submit" class="btn btn-secondary" value="Submit" />
+        </form>
       </div>
-      <div class="form-group">
-        <label>Password:</label>
-        <input type="password" class="form-control" v-model="password" />
-      </div>
-      <input type="submit" class="btn btn-primary" value="Submit" />
-    </form>
+    </section>
   </div>
 </template>
+
+<style scoped>
+.form-center {
+  margin: 0 auto;
+}
+</style>
 
 <script>
 import axios from "axios";

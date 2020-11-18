@@ -10,12 +10,15 @@
         <button
           type="button"
           value="this.post.address"
-          v-on:click="geolocateAddress()"
+          v-on:click="
+            toggleMap();
+            geolocateAddress();
+          "
         >
           See on map
         </button>
 
-        <div id="map"></div>
+        <div v-if="mapVisible" id="map"></div>
 
         <p>Details: {{ post.body }}</p>
         <router-link
@@ -98,6 +101,7 @@ export default {
       replyUpdate: false,
       isHidden: false,
       address: "Chicago",
+      mapVisible: false,
     };
   },
   created: function() {
@@ -107,10 +111,13 @@ export default {
     });
   },
   mounted: function() {
-    this.geolocateAddress();
+    // this.geolocateAddress();
   },
 
   methods: {
+    toggleMap: function() {
+      this.mapVisible = !this.mapVisible;
+    },
     geolocateAddress: function() {
       mapboxgl.accessToken = process.env.VUE_APP_MAPBOX_ACCESS_TOKEN;
       // eslint-disable-next-line no-undef
