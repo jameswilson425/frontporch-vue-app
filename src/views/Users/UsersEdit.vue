@@ -1,21 +1,36 @@
 <template>
   <div class="users-edit">
     <section class="text-light bg-dark">
-      <div class="col-lg-12 col-md-12 sm-margin-50px-bottom">
+      <div class="col-lg-4 col-md-6 sm-margin-50px-bottom form-center">
         <h1 class="text-light bg-dark">Edit Profile</h1>
         <form v-on:submit.prevent="updateUser(user)">
           <ul>
             <li v-for="error in errors">{{ error }}</li>
           </ul>
-          Username: <input type="text" v-model="user.user_name" /><br />
-          Address: <input type="text" v-model="user.address" /><br />
+          Username:
+          <input
+            type="text"
+            class="form-control"
+            v-model="user.user_name"
+          /><br />
+          Address:
+          <input
+            type="text"
+            class="form-control"
+            v-model="user.address"
+          /><br />
           Profile Image:
-          <input type="text" v-model="user.profile_image" /><br />
+          <input
+            type="text"
+            class="form-control"
+            v-model="user.profile_image"
+          /><br />
           <!-- Bio: <input type="text" v-model="user.bio" /><br /> -->
           <div class="form-group">
             <label>Bio:</label> <br />
             <!-- <input type="text" class="form-control" v-model="bio" /> <br /> -->
             <textarea
+              class="form-control"
               v-model="user.bio"
               name="bio"
               rows="10"
@@ -23,11 +38,17 @@
             ></textarea>
             <small>{{ 900 - user.bio.length }} characters remaining</small>
           </div>
-          <button v-on:click="updateUser()">Update</button><br />
-          <button v-on:click="destroyUser()">Delete Profile</button><br />
+          <button class="text-warning bg-dark" v-on:click="updateUser()">
+            Update</button
+          ><br />
+          <button class="text-warning bg-dark" v-on:click="destroyUser()">
+            Delete Profile</button
+          ><br />
           <h1 class="text-light bg-dark">Account Information</h1>
-          Email: <input type="text" v-model="user.email" /><br />
+          Email:
+          <input type="text" class="form-control" v-model="user.email" /><br />
           <button
+            class="text-warning bg-dark"
             type="button"
             v-on:click="passwordUpdate = !passwordUpdate"
             v-if="!isHidden"
@@ -67,7 +88,11 @@
                 >passwords do not match</small
               >
             </div>
-            <button type="button" @click="updateUser(user)">
+            <button
+              class="text-warning bg-dark"
+              type="button"
+              @click="updateUser(user)"
+            >
               Update Password
             </button>
           </div>
@@ -77,7 +102,11 @@
   </div>
 </template>
 
-<style></style>
+<style scoped>
+.form-center {
+  margin: 0 auto;
+}
+</style>
 
 <script>
 import axios from "axios";

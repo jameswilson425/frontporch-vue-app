@@ -1,13 +1,14 @@
 <template>
   <div class="posts-show">
-    <section class="bg-secondary">
-      <h2>{{ post.title }}</h2>
+    <section class="text-light bg-dark">
+      <h2 class="text-light bg-dark">{{ post.title }}</h2>
       <img v-bind:src="post.image_url" v-bind:alt="post.title" />
       <div class="card-body">
-        <p>Posted by: {{ post.user_name }}</p>
-        <p>Location: {{ post.address }}</p>
+        <p>POSTED by: {{ post.user_name }}</p>
+        <p>LOCATION: {{ post.address }}</p>
         <!-- <input type="text" v-model="this.post.address" /> -->
         <button
+          class="text-warning bg-dark"
           type="button"
           value="this.post.address"
           v-on:click="
@@ -20,8 +21,9 @@
 
         <div v-if="mapVisible" id="map"></div>
 
-        <p>Details: {{ post.body }}</p>
+        <p>DETAILS: {{ post.body }}</p>
         <router-link
+          class="text-warning"
           v-if="post.user_id == $parent.getUserId()"
           v-bind:to="`/posts/${post.id}/edit`"
           >Edit post</router-link
@@ -29,11 +31,12 @@
       </div>
       <br />
 
-      <h2>Replies</h2>
+      <h2 class="text-light bg-dark">Replies</h2>
       <div v-for="reply in post.replies">
         <p>{{ reply.user_name }} replied:</p>
         <p>{{ reply.body }}</p>
         <button
+          class="text-warning bg-dark"
           v-if="reply.user_id == $parent.getUserId() && !isHidden"
           type="button"
           v-on:click="
@@ -60,7 +63,7 @@
         </div>
       </div>
       <form v-if="$parent.isLoggedIn()" v-on:submit.prevent="createReply()">
-        <h3>Reply to this post:</h3>
+        <h5 class="text-light bg-dark">Reply to this post:</h5>
         <input type="text" v-model="newPostReply" />
         <input type="submit" value="Reply" />
       </form>
