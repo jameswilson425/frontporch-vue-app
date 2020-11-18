@@ -1,21 +1,88 @@
 <template>
   <div class="posts-index">
-    <h1>All Posts</h1>
-    <div v-for="post in posts">
-      <h2>{{ post.title }}</h2>
-      <small class="text-muted"
-        >Created {{ relativeDate(post.created_at) }}</small
-      >
-      <br />
-      <img v-bind:src="post.image_url" v-bind:alt="post.title" />
-      <p>Location: {{ post.address }}</p>
-      <p>Instrument(s):</p>
-      <div v-for="instrument in post.instruments">
-        {{ instrument.name }}
-      </div>
+    <!-- start blog Section -->
+    <section>
+      <div class="container">
+        <div class="row">
+          <!--  start blog left-->
+          <div
+            v-for="post in posts"
+            class="col-lg-8 col-md-12 sm-margin-50px-bottom"
+          >
+            <div class="card margin-40px-bottom border-0 bg-light rounded-0">
+              <div class="row no-gutters list-blog">
+                <div class="col-md-5">
+                  <div
+                    class="bg-img cover-background h-100 min-height-250"
+                    data-overlay-dark="0"
+                    :data-background="post.image_url"
+                    :style="`background-image: url(${post.image_url});`"
+                  ></div>
+                </div>
+                <div class="col-md-7">
+                  <div class="card-body">
+                    <span class="category">{{ post.address }}</span>
 
-      <router-link v-bind:to="`/posts/${post.id}`">View Post</router-link>
-    </div>
+                    <h5>
+                      <router-link v-bind:to="`/posts/${post.id}`">{{
+                        post.title
+                      }}</router-link>
+                    </h5>
+
+                    <p>Instrument(s):</p>
+                    <div v-for="instrument in post.instruments">
+                      {{ instrument.name }}
+                    </div>
+
+                    <div class="meta">
+                      <span class="date"
+                        >Created {{ relativeDate(post.created_at) }}</span
+                      >
+                      <span class="author"
+                        >By <a href="#!">{{ post.user_name }}</a></span
+                      >
+                      <!-- link to user profile -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- start pager  -->
+          <div class="margin-50px-top">
+            <div
+              class="pagination text-small text-uppercase text-extra-dark-gray"
+            >
+              <ul>
+                <li>
+                  <a href="javascript:void(0);"
+                    ><i
+                      class="fas fa-long-arrow-alt-left margin-5px-right xs-display-none"
+                    ></i>
+                    Prev</a
+                  >
+                </li>
+                <li class="active"><a href="javascript:void(0);">1</a></li>
+                <li><a href="javascript:void(0);">2</a></li>
+                <li><a href="javascript:void(0);">3</a></li>
+                <li>
+                  <a href="javascript:void(0);"
+                    >Next
+                    <i
+                      class="fas fa-long-arrow-alt-right margin-5px-left xs-display-none"
+                    ></i
+                  ></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- end pager  -->
+
+          <!--  end blog left-->
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 

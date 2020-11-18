@@ -12,6 +12,7 @@
     >
       See on map
     </button>
+
     <div id="map"></div>
 
     <p>Details: {{ post.body }}</p>
@@ -52,7 +53,7 @@
         </button>
       </div>
     </div>
-    <form v-on:submit.prevent="createReply()">
+    <form v-if="$parent.isLoggedIn()" v-on:submit.prevent="createReply()">
       <h3>Reply to this post:</h3>
       <input type="text" v-model="newPostReply" />
       <input type="submit" value="Reply" />
@@ -81,6 +82,7 @@
 <script>
 import axios from "axios";
 import mapboxgl from "mapbox-gl";
+
 export default {
   data: function() {
     return {

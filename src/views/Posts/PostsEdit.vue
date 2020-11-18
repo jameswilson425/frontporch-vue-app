@@ -1,32 +1,43 @@
 <template>
   <div class="posts-edit">
-    <h1>Edit Post</h1>
-    <form v-on:submit.prevent="updatePost(post)">
-      <ul>
-        <li v-for="error in errors">{{ error }}</li>
-      </ul>
-      Title: <input type="text" v-model="post.title" /> Address:
-      <input type="text" v-model="post.address" /> Body:
-      <input type="text" v-model="post.body" /> Image:
-      <input type="text" v-model="post.image_url" />
-      <h2>Instruments</h2>
-      <div v-for="instrument in instruments">
-        <input
-          type="checkbox"
-          :id="instrument.id"
-          :value="instrument.id"
-          v-model="selectedInstrumentIds"
-        />
-        <label :for="instrument.id">{{ instrument.name }}</label>
-      </div>
+    <!--  start about left-->
+    <section>
+      <div class="col-lg-8 col-md-12 sm-margin-50px-bottom">
+        <div>
+          <div class="margin-30px-bottom">
+            <img src="img/content/about.jpg" alt="" />
+          </div>
+          <h5 class="font-size48">Edit Post</h5>
+          <form v-on:submit.prevent="updatePost(post)">
+            <ul>
+              <li v-for="error in errors">{{ error }}</li>
+            </ul>
+            Title: <input type="text" v-model="post.title" /> Address:
+            <input type="text" v-model="post.address" /> Body:
+            <input type="text" v-model="post.body" /> Image:
+            <input type="text" v-model="post.image_url" />
+            <h2>Instruments</h2>
+            <div v-for="instrument in instruments">
+              <input
+                type="checkbox"
+                :id="instrument.id"
+                :value="instrument.id"
+                v-model="selectedInstrumentIds"
+              />
+              <label :for="instrument.id">{{ instrument.name }}</label>
+            </div>
 
-      <br />
-      <span>Selected instrument ids: {{ selectedInstrumentIds }}</span>
-      <input type="submit" value="Update" />
-      <button v-on:click="destroyPost()">
-        Delete Post
-      </button>
-    </form>
+            <br />
+            <!-- <span>Selected instrument ids: {{ selectedInstrumentIds }}</span> -->
+            <input type="submit" value="Update" />
+            <button v-on:click="destroyPost()">
+              Delete Post
+            </button>
+          </form>
+        </div>
+      </div>
+      <!--  end about left-->
+    </section>
   </div>
 </template>
 

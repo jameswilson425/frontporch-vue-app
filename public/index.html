@@ -1,11 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- metas -->
     <meta charset="utf-8" />
+    <meta name="author" content="Chitrakoot Web" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="keywords" content="Live Multipurpose Blog Template" />
+    <meta name="description" content="Live - Multipurpose Blog Template" />
+
+    <!-- title  -->
+    <title>frontporch</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="/img/logos/whitepick.png" />
+    <link rel="apple-touch-icon" href="/img/logos/apple-touch-icon-57x57.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="/img/logos/apple-touch-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="/img/logos/apple-touch-icon-114x114.png"
+    />
+
+    <!-- plugins -->
+    <link rel="stylesheet" href="/css/plugins.css" />
+
+    <!-- search css -->
+    <link rel="stylesheet" href="/search/search.css" />
+
+    <!-- core style css -->
+    <link href="/css/styles.css" rel="stylesheet" />
+
     <!-- Mapbox -->
     <link
       href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css"
@@ -15,15 +47,112 @@
     <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
     <!-- Mapbox -->
   </head>
+
   <body>
-    <noscript>
-      <strong
-        >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
-        properly without JavaScript enabled. Please enable it to
-        continue.</strong
-      >
-    </noscript>
+    <!-- start page loading -->
+    <div id="preloader">
+      <div class="row loader">
+        <div class="loader-icon"></div>
+      </div>
+    </div>
+    <!-- end page loading -->
+
     <div id="app"></div>
-    <!-- built files will be auto injected -->
+
+    <!-- start main-wrapper section -->
+    <div class="main-wrapper">
+      <!-- start footer section -->
+      <footer class="footer-bar no-margin text-center border-top">
+        <div class="container">
+          <p>
+            frontporch encourages most types of picking (not fights or noses)
+          </p>
+        </div>
+      </footer>
+      <!-- end footer section -->
+    </div>
+    <!-- end main-wrapper section -->
+
+    <!-- start scroll to top -->
+    <a href="javascript:void(0)" class="scroll-to-top"
+      ><i class="fas fa-angle-up" aria-hidden="true"></i
+    ></a>
+    <!-- end scroll to top -->
+
+    <!-- all js include start -->
+
+    <!-- jQuery -->
+    <script src="/js/jquery.min.js"></script>
+
+    <!-- modernizr js -->
+    <script src="/js/modernizr.js"></script>
+
+    <!-- bootstrap -->
+    <script src="/js/bootstrap.min.js"></script>
+
+    <!-- -------OLD INDEX SCRIPTS-----------------------------------------------  -->
+
+    <!-- search -->
+    <script src="/search/search.js"></script>
+
+    <!-- navigation -->
+    <script src="/js/nav-menu.js"></script>
+
+    <!-- jquery.magnific-popup js -->
+    <script src="/js/jquery.magnific-popup.min.js"></script>
+
+    <!-- isotope.pkgd.min js -->
+    <script src="/js/isotope.pkgd.min.js"></script>
+
+    <!-- owl carousel -->
+    <script src="/js/owl.carousel.js"></script>
+
+    <!-- stellar js -->
+    <script src="/js/jquery.stellar.min.js"></script>
+
+    <!-- custom scripts -->
+    <script src="/js/main.js"></script>
+
+    <!-- -------OLD INDEX SCRIPTS------------------------------------------------ -->
+
+    <script type="text/javascript">
+      var $window = $(window);
+
+      $(document).ready(function() {
+        $("a[href^='#']").click(function(e) {
+          e.preventDefault();
+
+          var position = $($(this).attr("href")).offset().top;
+
+          $("body, html").animate(
+            {
+              scrollTop: position,
+            },
+            1000
+          );
+        });
+
+        // scroll to top
+        $window.on("scroll", function() {
+          if ($(this).scrollTop() > 500) {
+            $(".scroll-to-top").fadeIn(400);
+          } else {
+            $(".scroll-to-top").fadeOut(400);
+          }
+        });
+
+        $(".scroll-to-top").on("click", function(event) {
+          event.preventDefault();
+          $("html, body").animate(
+            {
+              scrollTop: 0,
+            },
+            600
+          );
+        });
+      });
+    </script>
+
+    <!-- all js include end -->
   </body>
 </html>

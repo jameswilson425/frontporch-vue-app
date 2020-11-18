@@ -1,30 +1,42 @@
 <template>
   <div class="posts-new">
-    <p v-if="$parent.isLoggedIn()"></p>
-    <h1>New Post</h1>
-    <form v-on:submit.prevent="createPost()">
-      <ul>
-        <li v-for="error in errors">{{ error }}</li>
-      </ul>
-      Title: <input type="text" v-model="newPostTitle" /> Body:
-      <input type="text" v-model="newPostBody" /> Address:
-      <input type="text" v-model="newPostAddress" /> Image:
-      <input type="text" v-model="newPostUrl" />
-      <h2>Instruments</h2>
-      <div v-for="instrument in instruments">
-        <input
-          type="checkbox"
-          :id="instrument.id"
-          :value="instrument.id"
-          v-model="selectedInstrumentIds"
-        />
-        <label :for="instrument.id">{{ instrument.name }}</label>
+    <!--  start about left-->
+    <section>
+      <div class="col-lg-8 col-md-12 sm-margin-50px-bottom">
+        <div>
+          <div class="margin-30px-bottom">
+            <img src="img/content/about.jpg" alt="" />
+          </div>
+          <h5 class="font-size48">Make A Post</h5>
+          <div>
+            <form v-on:submit.prevent="createPost()">
+              <ul>
+                <li v-for="error in errors">{{ error }}</li>
+              </ul>
+              Title: <input type="text" v-model="newPostTitle" /> Body:
+              <input type="text" v-model="newPostBody" /> Address:
+              <input type="text" v-model="newPostAddress" /> Image:
+              <input type="text" v-model="newPostUrl" />
+              <h2>Instruments</h2>
+              <div v-for="instrument in instruments">
+                <input
+                  type="checkbox"
+                  :id="instrument.id"
+                  :value="instrument.id"
+                  v-model="selectedInstrumentIds"
+                />
+                <br />
+                <!-- break for instrument name under box -->
+                <label :for="instrument.id"> {{ instrument.name }}</label>
+              </div>
+              <!-- <span>Selected instrument ids: {{ selectedInstrumentIds }}</span> -->
+              <input type="submit" value="Create" /> <br />
+            </form>
+          </div>
+        </div>
       </div>
-
-      <br />
-      <span>Selected instrument ids: {{ selectedInstrumentIds }}</span>
-      <input type="submit" value="Create" />
-    </form>
+      <!--  end about left-->
+    </section>
   </div>
 </template>
 
