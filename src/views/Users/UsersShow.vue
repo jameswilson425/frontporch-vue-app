@@ -1,14 +1,16 @@
 <template>
   <div class="users-show">
     <section class="text-light bg-dark">
-      <h2 class="text-light bg-dark">{{ user.user_name }}</h2>
-      <img :src="user.profile_image" alt="" />
-      <p>Email: {{ user.email }}</p>
-      <p>Address: {{ user.address }}</p>
-      <p>Bio: {{ user.bio }}</p>
-      <router-link class="text-warning" v-bind:to="`/users/${user.id}/edit`"
-        >Edit Profile</router-link
-      >
+      <div class="col-lg-12 col-md-12 sm-margin-50px-bottom">
+        <h2 class="text-light bg-dark">{{ user.user_name }}</h2>
+        <img :src="user.profile_image" alt="" />
+        <p>EMAIL: {{ user.email }}</p>
+        <p>ADDRESS: {{ user.address }}</p>
+        <p>BIO: {{ user.bio }}</p>
+        <router-link class="text-warning" v-bind:to="`/users/${user.id}/edit`"
+          >Edit Profile</router-link
+        >
+      </div>
     </section>
   </div>
 </template>
