@@ -42,7 +42,7 @@
                   <div class="navbar-header navbar-header-custom">
                     <!-- start logo -->
                     <a
-                      href="index.html"
+                      href="/"
                       class="navbar-brand width-500px sm-width-180px xs-width-150px"
                       ><img
                         id="logo"

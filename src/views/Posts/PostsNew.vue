@@ -25,9 +25,7 @@
                   :value="instrument.id"
                   v-model="selectedInstrumentIds"
                 />
-                <br />
-                <!-- break for instrument name under box -->
-                <label :for="instrument.id"> {{ instrument.name }}</label>
+                <label :for="instrument.id"> -{{ instrument.name }}</label>
               </div>
               <!-- <span>Selected instrument ids: {{ selectedInstrumentIds }}</span> -->
               <input type="submit" value="Create" /> <br />
