@@ -103,8 +103,6 @@
           </div>
         </div>
       </div>
-      |
-      <router-link to="/about">About</router-link> | | | | | | |
     </div>
     <router-view :key="$route.path" />
   </div>
