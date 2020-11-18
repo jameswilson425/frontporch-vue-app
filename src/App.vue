@@ -3,7 +3,7 @@
     <div id="nav">
       <div class="navbar-default">
         <!-- start top search -->
-        <div class="top-search bg-theme">
+        <!-- <div class="top-search bg-theme">
           <div class="container">
             <form
               class="search-form"
@@ -31,7 +31,7 @@
               </div>
             </form>
           </div>
-        </div>
+        </div> -->
         <!-- end top search -->
 
         <div class="container">
