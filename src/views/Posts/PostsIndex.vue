@@ -1,7 +1,7 @@
 <template>
   <div class="posts-index">
     <!-- start blog Section -->
-    <section>
+    <section class="bg-secondary">
       <div class="container">
         <div class="row">
           <!--  start blog left-->

@@ -81,22 +81,6 @@
                     </li>
                   </ul>
                   <!-- end menu area -->
-
-                  <!-- start attribute navigation -->
-                  <div
-                    class="attr-nav sm-no-margin sm-margin-65px-right xs-margin-55px-right"
-                  >
-                    <ul class="search">
-                      <li class="search">
-                        <a href="javascript:void(0)"
-                          ><i
-                            class="fas fa-search text-theme-color font-size18 margin-5px-top sm-no-margin-top"
-                          ></i
-                        ></a>
-                      </li>
-                    </ul>
-                  </div>
-                  <!-- end attribute navigation -->
                 </nav>
               </div>
             </div>
