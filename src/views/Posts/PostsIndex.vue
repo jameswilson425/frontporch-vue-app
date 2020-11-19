@@ -39,9 +39,11 @@
                         >Created {{ relativeDate(post.created_at) }}</span
                       >
                       <span class="author"
-                        >By <a href="#!">{{ post.user_name }}</a></span
+                        >By
+                        <a :href="`/users/${post.user_id}`">{{
+                          post.user_name
+                        }}</a></span
                       >
-                      <!-- link to user profile -->
                     </div>
                   </div>
                 </div>

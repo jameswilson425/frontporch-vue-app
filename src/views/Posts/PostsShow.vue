@@ -5,7 +5,10 @@
         <h2 class="text-light bg-dark">{{ post.title }}</h2>
         <img v-bind:src="post.image_url" v-bind:alt="post.title" />
         <div class="card-body text-light bg-dark">
-          <p>POSTED by: {{ post.user_name }}</p>
+          <span class="text-light bg-dark"
+            >By
+            <a :href="`/users/${post.user_id}`">{{ post.user_name }}</a></span
+          >
           <p>LOCATION: {{ post.address }}</p>
           <!-- <input type="text" v-model="this.post.address" /> -->
           <button
@@ -52,7 +55,9 @@
               </div>
               <div class="comment-info">
                 <h6>
-                  <a class="text-white bg-dark" href="javascript:void(0);"
+                  <a
+                    class="text-white bg-dark"
+                    :href="`/users/${reply.user_id}`"
                     >{{ reply.user_name }}:</a
                   >
                 </h6>

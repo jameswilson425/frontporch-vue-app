@@ -7,7 +7,10 @@
         <p>EMAIL: {{ user.email }}</p>
         <p>ADDRESS: {{ user.address }}</p>
         <p>BIO: {{ user.bio }}</p>
-        <router-link class="text-warning" v-bind:to="`/users/${user.id}/edit`"
+        <router-link
+          class="text-warning"
+          v-if="user.id == $parent.getUserId()"
+          v-bind:to="`/users/${user.id}/edit`"
           >Edit Profile</router-link
         >
       </div>
