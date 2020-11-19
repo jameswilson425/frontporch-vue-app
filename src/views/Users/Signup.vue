@@ -46,7 +46,6 @@
           </div>
           <div class="form-group">
             <label>Bio:</label> <br />
-            <!-- <input type="text" class="form-control" v-model="bio" /> <br /> -->
             <textarea name="bio" class="form-control" rows="10" cols="100">
 Tell us about yourself! Feel free to include links to your music and whatnot.</textarea
             >

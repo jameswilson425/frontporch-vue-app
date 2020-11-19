@@ -39,8 +39,8 @@
             <small>{{ 900 - user.bio.length }} characters remaining</small>
           </div>
           <button class="text-warning bg-dark" v-on:click="updateUser()">
-            Update</button
-          ><br />
+            Update
+          </button>
           <button class="text-warning bg-dark" v-on:click="destroyUser()">
             Delete Profile</button
           ><br />

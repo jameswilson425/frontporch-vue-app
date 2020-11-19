@@ -1,23 +1,38 @@
 <template>
   <div class="posts-edit">
     <!--  start about left-->
-    <section class="bg-secondary">
-      >
-      <div class="col-lg-8 col-md-12 sm-margin-50px-bottom">
+    <section class="text-light bg-dark">
+      <div class="col-lg-4 col-md-6 sm-margin-50px-bottom form-center">
         <div>
           <div class="margin-30px-bottom">
             <img src="img/content/about.jpg" alt="" />
           </div>
-          <h5 class="font-size48">Edit Post</h5>
+          <h5 class="font-size48 text-light bg-dark">Edit Post</h5>
           <form v-on:submit.prevent="updatePost(post)">
             <ul>
               <li v-for="error in errors">{{ error }}</li>
             </ul>
-            Title: <input type="text" v-model="post.title" /> Address:
-            <input type="text" v-model="post.address" /> Body:
-            <input type="text" v-model="post.body" /> Image:
-            <input type="text" v-model="post.image_url" />
-            <h2>Instruments</h2>
+            Title:
+            <input type="text" class="form-control" v-model="post.title" />
+            Address:
+            <input type="text" class="form-control" v-model="post.address" />
+            <div class="form-group">
+              <label>Body:</label> <br />
+              <textarea
+                v-model="post.body"
+                name="bio"
+                class="form-control"
+                rows="10"
+                cols="100"
+              ></textarea>
+              <small class="text-warning"
+                >{{ 500 - this.post.body.length }} characters remaining</small
+              >
+            </div>
+            Image:
+            <input type="text" class="form-control" v-model="post.image_url" />
+            <br />
+            <h2 class="text-light bg-dark">Instruments</h2>
             <div v-for="instrument in instruments">
               <input
                 type="checkbox"
@@ -30,8 +45,8 @@
 
             <br />
             <!-- <span>Selected instrument ids: {{ selectedInstrumentIds }}</span> -->
-            <input type="submit" value="Update" />
-            <button v-on:click="destroyPost()">
+            <input class="text-warning bg-dark" type="submit" value="Update" />
+            <button class="text-warning bg-dark" v-on:click="destroyPost()">
               Delete Post
             </button>
           </form>
@@ -41,6 +56,12 @@
     </section>
   </div>
 </template>
+
+<style scoped>
+.form-center {
+  margin: 0 auto;
+}
+</style>
 
 <script>
 import axios from "axios";
