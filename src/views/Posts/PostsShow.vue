@@ -1,78 +1,123 @@
 <template>
   <div class="posts-show">
-    <section class="text-light bg-dark">
-      <h2 class="text-light bg-dark">{{ post.title }}</h2>
-      <img v-bind:src="post.image_url" v-bind:alt="post.title" />
-      <div class="card-body">
-        <p>POSTED by: {{ post.user_name }}</p>
-        <p>LOCATION: {{ post.address }}</p>
-        <!-- <input type="text" v-model="this.post.address" /> -->
-        <button
-          class="text-warning bg-dark"
-          type="button"
-          value="this.post.address"
-          v-on:click="
-            toggleMap();
-            geolocateAddress();
-          "
-        >
-          See on map
-        </button>
-
-        <div v-if="mapVisible" id="map"></div>
-
-        <p>DETAILS: {{ post.body }}</p>
-        <router-link
-          class="text-warning"
-          v-if="post.user_id == $parent.getUserId()"
-          v-bind:to="`/posts/${post.id}/edit`"
-          >Edit post</router-link
-        >
-      </div>
-      <br />
-
-      <h2 class="text-light bg-dark">Replies</h2>
-      <div v-for="reply in post.replies">
-        <p>{{ reply.user_name }} replied:</p>
-        <p>{{ reply.body }}</p>
-        <button
-          class="text-warning bg-dark"
-          v-if="reply.user_id == $parent.getUserId() && !isHidden"
-          type="button"
-          v-on:click="
-            isHidden = true;
-            currentReply = reply;
-          "
-        >
-          Edit Reply
-        </button>
-        <div
-          v-if="reply.user_id == $parent.getUserId() && reply === currentReply"
-        >
-          <form v-on:submit.prevent="updateReply(currentReply)">
-            <input type="text" v-model="currentReply.body" />
-            <input type="submit" value="Update" />
-          </form>
-
+    <section class="bg-dark">
+      <div class="col-lg-8 col-md-12 sm-margin-50px-bottom form-center">
+        <h2 class="text-light bg-dark">{{ post.title }}</h2>
+        <img v-bind:src="post.image_url" v-bind:alt="post.title" />
+        <div class="card-body text-light bg-dark">
+          <p>POSTED by: {{ post.user_name }}</p>
+          <p>LOCATION: {{ post.address }}</p>
+          <!-- <input type="text" v-model="this.post.address" /> -->
           <button
-            v-if="reply.user_id == $parent.getUserId()"
-            v-on:click="destroyReply(currentReply)"
+            class="text-warning bg-dark"
+            type="button"
+            value="this.post.address"
+            v-on:click="
+              toggleMap();
+              geolocateAddress();
+            "
           >
-            Delete Reply
+            See on map
           </button>
+
+          <div v-if="mapVisible" id="map"></div>
+
+          <p>DETAILS: {{ post.body }}</p>
+          <router-link
+            class="text-warning"
+            v-if="post.user_id == $parent.getUserId()"
+            v-bind:to="`/posts/${post.id}/edit`"
+            >Edit post</router-link
+          >
         </div>
+        <br />
+
+        <!--  start comment-->
+        <div class="comments-area">
+          <div class="margin-50px-bottom sm-margin-30px-bottom">
+            <h3
+              class="font-size28 sm-font-size26 xs-font-size24 text-light bg-dark"
+            >
+              Replies
+            </h3>
+          </div>
+          <div v-for="reply in post.replies">
+            <div class="comment-box text-light bg-dark">
+              <div class="author-thumb">
+                <img
+                  src="img/blog/01.png"
+                  alt=""
+                  class="rounded-circle width-85 xs-width-100"
+                />
+              </div>
+              <div class="comment-info">
+                <h6>
+                  <a class="text-white bg-dark" href="javascript:void(0);"
+                    >{{ reply.user_name }}:</a
+                  >
+                </h6>
+                <p>
+                  {{ reply.body }}
+                </p>
+                <!-- <div class="reply">
+                <a href="javascript:void(0);">
+                  <i class="fa fa-reply" aria-hidden="true"></i> Reply
+                </a>
+              </div> -->
+              </div>
+              <button
+                class="text-warning bg-dark"
+                v-if="reply.user_id == $parent.getUserId() && !isHidden"
+                type="button"
+                v-on:click="
+                  isHidden = true;
+                  currentReply = reply;
+                "
+              >
+                Edit Reply
+              </button>
+              <div
+                v-if="
+                  reply.user_id == $parent.getUserId() && reply === currentReply
+                "
+              >
+                <form v-on:submit.prevent="updateReply(currentReply)">
+                  <input type="text" v-model="currentReply.body" />
+                  <input type="submit" value="Update" />
+                </form>
+
+                <button
+                  v-if="reply.user_id == $parent.getUserId()"
+                  v-on:click="destroyReply(currentReply)"
+                >
+                  Delete Reply
+                </button>
+              </div>
+            </div>
+          </div>
+          <form v-if="$parent.isLoggedIn()" v-on:submit.prevent="createReply()">
+            <h5 class="text-light bg-dark">Reply to this post:</h5>
+            <input type="text" class="form-control" v-model="newPostReply" />
+            <input
+              class="col-lg-4 col-md-6 sm-margin-50px-bottom form-center form-control text-warning bg-dark"
+              type="submit"
+              value="Reply"
+            />
+          </form>
+          <router-link class="text-warning bg-dark" to="/posts"
+            >Back to all posts</router-link
+          >
+        </div>
+        <!-- end comment-->
       </div>
-      <form v-if="$parent.isLoggedIn()" v-on:submit.prevent="createReply()">
-        <h5 class="text-light bg-dark">Reply to this post:</h5>
-        <input type="text" v-model="newPostReply" />
-        <input type="submit" value="Reply" />
-      </form>
-      <router-link to="/posts">Back to all posts</router-link>
     </section>
   </div>
 </template>
 
 <style>
+.form-center {
+  margin: 0 auto;
+}
 #map {
   width: 50%;
   height: 250px;

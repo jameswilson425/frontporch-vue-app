@@ -15,7 +15,11 @@
             <label>Password:</label>
             <input type="password" class="form-control" v-model="password" />
           </div>
-          <input type="submit" class="btn btn-secondary" value="Submit" />
+          <input
+            type="submit"
+            class="btn btn-secondary form-control text-warning bg-dark"
+            value="Submit"
+          />
         </form>
       </div>
     </section>

@@ -25,6 +25,7 @@
         <h6 class="text-light bg-dark">
           Or stay a while and check out the weekly video!
         </h6>
+        <p>*Spoiler alert, it's Ground Speed by Earl Scruggs</p>
 
         <!-- Video -->
         <div>

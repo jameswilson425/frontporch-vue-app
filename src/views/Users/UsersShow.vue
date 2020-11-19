@@ -1,7 +1,7 @@
 <template>
   <div class="users-show">
     <section class="text-light bg-dark">
-      <div class="col-lg-4 col-md-6 sm-margin-50px-bottom form-center">
+      <div class="col-lg-12 col-md-12 sm-margin-50px-bottom form-center">
         <h2 class="text-light bg-dark">{{ user.user_name }}</h2>
         <img :src="user.profile_image" alt="" />
         <p>EMAIL: {{ user.email }}</p>
