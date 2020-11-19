@@ -36,7 +36,9 @@
               rows="10"
               cols="100"
             ></textarea>
-            <small>{{ 900 - user.bio.length }} characters remaining</small>
+            <small class="text-warning bg-dark"
+              >{{ 900 - user.bio.length }} characters remaining</small
+            >
           </div>
           <button class="text-warning bg-dark" v-on:click="updateUser()">
             Update
@@ -111,11 +113,11 @@
 <script>
 import axios from "axios";
 export default {
-  data: function() {
+  data: function(user) {
     return {
       user: {},
       errors: [],
-      current_password: "",
+      current_password: user.password,
       password: "",
       password_confirmation: "",
       passwordConfirmation: "",

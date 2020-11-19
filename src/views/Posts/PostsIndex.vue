@@ -52,7 +52,7 @@
           </div>
 
           <!-- start pager  -->
-          <div class="margin-50px-top">
+          <!-- <div class="margin-50px-top">
             <div
               class="pagination text-small text-uppercase text-extra-dark-gray"
             >
@@ -78,7 +78,7 @@
                 </li>
               </ul>
             </div>
-          </div>
+          </div> -->
           <!-- end pager  -->
 
           <!--  end blog left-->

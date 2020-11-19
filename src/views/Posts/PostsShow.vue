@@ -3,7 +3,7 @@
     <section class="bg-dark">
       <div class="col-lg-8 col-md-12 sm-margin-50px-bottom form-center">
         <h2 class="text-light bg-dark">{{ post.title }}</h2>
-        <img v-bind:src="post.image_url" v-bind:alt="post.title" />
+        <img class="size" v-bind:src="post.image_url" v-bind:alt="post.title" />
         <div class="card-body text-light bg-dark">
           <span class="text-light bg-dark"
             >By
@@ -88,11 +88,16 @@
               >
                 <form v-on:submit.prevent="updateReply(currentReply)">
                   <input type="text" v-model="currentReply.body" />
-                  <input type="submit" value="Update" />
+                  <input
+                    type="submit"
+                    class="col-lg-4 col-md-6 sm-margin-50px-bottom form-center form-control text-warning bg-dark"
+                    value="Update"
+                  />
                 </form>
 
                 <button
                   v-if="reply.user_id == $parent.getUserId()"
+                  class="col-lg-4 col-md-6 sm-margin-50px-bottom form-center form-control text-warning bg-dark"
                   v-on:click="destroyReply(currentReply)"
                 >
                   Delete Reply
@@ -122,6 +127,10 @@
 <style>
 .form-center {
   margin: 0 auto;
+}
+.size {
+  width: 50%;
+  height: 75%;
 }
 #map {
   width: 50%;

@@ -100,7 +100,7 @@ export default {
         .patch("/api/posts/" + post.id, params)
         .then((response) => {
           console.log("posts update", response);
-          this.$router.push("/posts");
+          this.$router.push(`/posts/${this.post.id}`);
         })
         .catch((error) => {
           console.log("posts update error", error.response);

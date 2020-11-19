@@ -3,7 +3,7 @@
     <section class="text-light bg-dark">
       <div class="col-lg-12 col-md-12 sm-margin-50px-bottom form-center">
         <h2 class="text-light bg-dark">{{ user.user_name }}</h2>
-        <img :src="user.profile_image" alt="" />
+        <img class="size" :src="user.profile_image" alt="" />
         <p>EMAIL: {{ user.email }}</p>
         <p>ADDRESS: {{ user.address }}</p>
         <p>BIO: {{ user.bio }}</p>
@@ -21,6 +21,10 @@
 <style scoped>
 .form-center {
   margin: 0 auto;
+}
+.size {
+  width: 25%;
+  height: 30%;
 }
 </style>
 
